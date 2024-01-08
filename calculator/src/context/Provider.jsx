@@ -3,20 +3,39 @@ import AppContext from "./context";
 
 function Provider({ children }){
     const [number, setNumber] = useState(0)
+    const [operator, setOperator] = useState();
+    const [previousValue, setPreviousValue] = useState()
 
+    const insertOperator = (e) => {
 
-    const insertNumber = (e) => {
-        let number = e.target.value;
+        let currentOperator = e.target.innerText;
+
+        setOperator(currentOperator)
+        setPreviousValue(number + currentOperator)
+
+    }
+
+    
+    const insertNumber = (e) => { 
+        
+        let currentNumber = e.target.innerText;
+        
         if(number === 0){
-            setNumber(number)
+            setNumber(currentNumber)
         } else {
-            setNumber(previousNumber => previousNumber + number)
+            setNumber(previousNumber => previousNumber + currentNumber)
         }
 
     }
     const value = {
         number, 
-        setNumber
+        setNumber,
+        insertNumber,
+        operator, 
+        setOperator, 
+        insertOperator,
+        previousValue, 
+        setPreviousValue
     }
 
 
