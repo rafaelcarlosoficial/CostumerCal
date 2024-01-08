@@ -1,0 +1,6 @@
+.buttonsContainer {
+    background-color:  #202020;
+    max-width: max-content;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
