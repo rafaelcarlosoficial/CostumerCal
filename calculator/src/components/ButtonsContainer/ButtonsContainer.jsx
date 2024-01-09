@@ -9,13 +9,13 @@ const ButtonsContainer = () => {
     'X²', '²√x', '÷', '7', '8', 
     '9','X', '4', '5', '6', '-', 
     '1', '2', '3', '+', '+/-', 
-    '0', ',', '=']
+    '0', '.', '=']
 
     const grayButtons = 
     ['7', '8', '9', 
     '4', '5', '6', 
     '1', '2', '3', 
-    '+/-', '0', ',' ]
+    '+/-', '0', '.' ]
 
     const numberButtons = 
     ['1', '2', '3', 
@@ -28,7 +28,7 @@ const ButtonsContainer = () => {
     ]
      
 
-    const { insertNumber, insertOperator } = useContext(AppContext);
+    const { insertNumber, insertOperator, calculate } = useContext(AppContext);
     return (
     <div className='buttonsContainer'>
         {contentOfTheButtons.map((content, index) => {
@@ -45,7 +45,7 @@ const ButtonsContainer = () => {
            
            else if(content === '=') {
             
-            return (<Button key={index} content={content} background={'#76B9ED'} textColor={'#202020'} />);
+            return (<Button key={index} content={content} background={'#76B9ED'} textColor={'#202020'} handleClick={calculate} />);
            
            } else if (operators.includes(content)){
             

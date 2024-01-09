@@ -2,21 +2,60 @@ import React, { useState } from "react";
 import AppContext from "./context";
 
 function Provider({ children }){
-    const [number, setNumber] = useState(0)
+
+    const [number, setNumber] = useState(0);
+    const [oldNumber, setOldNumber] = useState(null);
     const [operator, setOperator] = useState();
-    const [previousValue, setPreviousValue] = useState()
+    const [oldOperator, setOldOperator] = useState(null);
+    const [previousValue, setPreviousValue] = useState();
 
-    const insertOperator = (e) => {
 
-        let currentOperator = e.target.innerText;
 
-        setOperator(currentOperator)
-        setPreviousValue(number + currentOperator)
+
+    const calculate = () => {
+
+        switch (oldOperator){
+            case '/':
+                setNumber(parseFloat(oldNumber) / parseFloat(number))
+                break;
+            case '+':
+                setNumber(parseFloat(oldNumber) + parseFloat(number))
+                break;
+            case '-':
+                setNumber(parseFloat(oldNumber) - parseFloat(number))
+                break;
+            case 'X':
+                setNumber(parseFloat(oldNumber) * parseFloat(number))
+                break;
+            default:
+                console.log('operador não encontrado')
+                break;
+        } 
+
+        setPreviousValue(oldNumber + oldOperator + number)
+        setOldNumber('')
+        setOldOperator('')
 
     }
 
+
+    const insertOperator = (e) => {
     
+        let currentOperator = e.target.innerText;
+
+        if(oldOperator === null && oldNumber === null){
+            setOldNumber(number)
+            setOldOperator(currentOperator)
+            setNumber('')
+        } else {
+            calculate()
+        }
+    
+    }
+
+
     const insertNumber = (e) => { 
+
         
         let currentNumber = e.target.innerText;
         
@@ -27,6 +66,9 @@ function Provider({ children }){
         }
 
     }
+
+  
+
     const value = {
         number, 
         setNumber,
@@ -34,6 +76,11 @@ function Provider({ children }){
         operator, 
         setOperator, 
         insertOperator,
+        oldOperator, 
+        setOldOperator,
+        oldNumber, 
+        setOldNumber,
+        calculate,
         previousValue, 
         setPreviousValue
     }
