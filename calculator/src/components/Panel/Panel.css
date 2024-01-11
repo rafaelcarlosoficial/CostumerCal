@@ -5,12 +5,16 @@
     justify-content: space-around;
     display: flex;
     flex-direction: column;
+    word-wrap: break-word;
+    word-break: break-all;
+    max-width: 370px;
 }
 
 .previousNumber, .currentNumber {
     color: white;
     text-align: right;
     margin-right: 10px;
+  
 }
 
 .previousNumber{
