@@ -1,2 +1,2 @@
 # CostumerCal
- calculadora para o meu cliente
+ calculadora em react
